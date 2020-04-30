@@ -1,6 +1,10 @@
 # flutter_quizzler
 
-A new Flutter project.
+A Quiz app for android and iOS, built using Flutter
+
+## Final product
+
+![Finished App](https://github.com/londonappbrewery/Images/blob/master/quizzler-demo.gif)
 
 ## Getting Started
 
