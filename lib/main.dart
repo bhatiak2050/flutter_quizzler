@@ -76,7 +76,7 @@ class _QuizPageState extends State<QuizPage> {
                       Icon(Icons.close, color: Colors.red),
                     );
                   }
-                  quizBrain.nextQuestion();
+                  if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
                 });
               },
             ),
@@ -105,7 +105,7 @@ class _QuizPageState extends State<QuizPage> {
                       Icon(Icons.close, color: Colors.red),
                     );
                   }
-                  quizBrain.nextQuestion();
+                  if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
                 });
               },
             ),
