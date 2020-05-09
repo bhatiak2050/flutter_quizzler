@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quizbrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -29,6 +30,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  bool isFinished = false;
 
   void checkAnswer(bool ans) {
     if (quizBrain.getAnswer() == ans) {
@@ -40,7 +42,33 @@ class _QuizPageState extends State<QuizPage> {
         Icon(Icons.close, color: Colors.red),
       );
     }
-    if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
+    if (quizBrain.nextQuestion() == 0) {
+      scoreKeeper = [];
+      isFinished = true;
+    }
+    checkIsFinished();
+  }
+
+  void checkIsFinished() {
+    if (isFinished == true) {
+      drawAlert();
+      isFinished = false;
+    }
+  }
+
+  void drawAlert() {
+    Alert(
+        context: context,
+        title: "Finished!",
+        desc: "You've reached the end of the quiz.",
+        buttons: [
+          DialogButton(
+              child: Text(
+                "Start Over",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => Navigator.pop(context))
+        ]).show();
   }
 
   @override
