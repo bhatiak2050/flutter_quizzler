@@ -30,6 +30,19 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
+  void checkAnswer(bool ans) {
+    if (quizBrain.getAnswer() == ans) {
+      scoreKeeper.add(
+        Icon(Icons.check, color: Colors.green),
+      );
+    } else {
+      scoreKeeper.add(
+        Icon(Icons.close, color: Colors.red),
+      );
+    }
+    if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -67,16 +80,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (quizBrain.getAnswer() == true) {
-                    scoreKeeper.add(
-                      Icon(Icons.check, color: Colors.green),
-                    );
-                  } else {
-                    scoreKeeper.add(
-                      Icon(Icons.close, color: Colors.red),
-                    );
-                  }
-                  if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
+                  checkAnswer(true);
                 });
               },
             ),
@@ -96,16 +100,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (quizBrain.getAnswer() == false) {
-                    scoreKeeper.add(
-                      Icon(Icons.check, color: Colors.green),
-                    );
-                  } else {
-                    scoreKeeper.add(
-                      Icon(Icons.close, color: Colors.red),
-                    );
-                  }
-                  if (quizBrain.nextQuestion() == 0) scoreKeeper = [];
+                  checkAnswer(false);
                 });
               },
             ),
